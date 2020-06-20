@@ -1,12 +1,15 @@
 from django.db import models
 
+from core.models import TimeStampedModel
 
-class TimeStampedModel(models.Model):
 
-    """Time Stamped Definition"""
+class List(TimeStampedModel):
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    """List Model Definition"""
 
-    class Meta:
-        abstract = True
+    name = models.CharField(max_length=80)
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE)
+    rooms = models.ManyToManyField("rooms.Room", blank=True)
+
+    def __str__(self):
+        return self.name
