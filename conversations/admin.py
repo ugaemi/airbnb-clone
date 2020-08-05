@@ -4,11 +4,11 @@ from conversations import models
 
 
 @admin.register(models.Message)
-class Message(admin.ModelAdmin):
+class MessageAdmin(admin.ModelAdmin):
 
     """Message Admin Definition"""
 
-    pass
+    list_display = ("__str__", "created")
 
 
 @admin.register(models.Conversation)
